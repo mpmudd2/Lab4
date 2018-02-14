@@ -73,6 +73,47 @@ public class Colosseum {
      */
     public static Pokemon buildPokemon() {
         Pokemon tempPokemon = new Pokemon();
+        myScan = new Scanner(System.in);
+        System.out.println("Please name your Pokemon: ");
+        tempPokemon.name = myScan.nextLine();
+        System.out.println("How many hit points will it have? (1-50): ");
+        tempPokemon.hitPoints = myScan.nextInt();
+        if (tempPokemon.hitPoints < 1 || tempPokemon.hitPoints > MAX_HIT_POINTS) {
+            boolean invalid = true;
+            while (invalid) {
+                System.out.println("Sorry. Hit points must be between 1 and 50: ");
+                tempPokemon.hitPoints = myScan.nextInt();
+                if (tempPokemon.hitPoints >= 1 && tempPokemon.hitPoints <= MAX_HIT_POINTS) {
+                    invalid = false;
+                }
+            }
+        }
+        System.out.println("Split fifty points between attack level and defense level");
+        System.out.println("Enter your attack level (1-49): ");
+        tempPokemon.attackLevel = myScan.nextInt();
+        if (tempPokemon.attackLevel < 1 || tempPokemon.attackLevel > 49) {
+            boolean invalid = true;
+            while (invalid) {
+                System.out.println("Sorry. The attack level must be between 1 and 49: ");
+                tempPokemon.attackLevel = myScan.nextInt();
+                if (tempPokemon.attackLevel >= 1 && tempPokemon.attackLevel <= 49) {
+                    invalid = false;
+                }
+            }
+        }
+        int maxDefense = 50 - tempPokemon.attackLevel;
+        System.out.println("Enter your defense level (1-" + maxDefense + "): ");
+        tempPokemon.defenseLevel = myScan.nextInt();
+        if (tempPokemon.defenseLevel < 1 || tempPokemon.defenseLevel > maxDefense) {
+            boolean invalid = true;
+            while (invalid) {
+                System.out.println("Sorry. The defense level must be between 1 and " + maxDefense + ": ");
+                tempPokemon.defenseLevel = myScan.nextInt();
+                if (tempPokemon.defenseLevel >= 1 && tempPokemon.defenseLevel <= maxDefense) {
+                    invalid = false;
+                }
+            }
+        }
         return tempPokemon;
     }
 
